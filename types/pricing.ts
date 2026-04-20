@@ -1,0 +1,14 @@
+// types/pricing.ts
+export interface PricingPlan {
+    id: string;
+    name: string;
+    priceMonthly: number;
+    description: string;
+    features: string[];
+    isFeatured: boolean;
+    ctaText: string;
+    order: number;
+    isPublished: boolean;
+    createdAt: Date;
+    updatedAt: Date;
+}

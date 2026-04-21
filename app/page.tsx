@@ -2,7 +2,6 @@
 import Hero from '@/components/sections/Hero';
 import AboutPreview from '@/components/sections/AboutPreview';
 import Services from '@/components/sections/Services';
-import Features from '@/components/sections/Features';
 import WorkingProcess from '@/components/sections/WorkingProcess';
 import Pricing from '@/components/sections/Pricing';
 import Projects from '@/components/sections/Projects';
@@ -38,7 +37,6 @@ export default function HomePage() {
       <Hero />
       <AboutPreview />
       <Services />
-      <Features />
       <Features1 />
       <WorkingProcess />
       <Projects />

@@ -8,12 +8,12 @@ import Footer from '@/components/layout/Footer';
 import { Search, Megaphone, Share2, FileText, TrendingUp, Key } from 'lucide-react';
 
 const services = [
-    { icon: Search, title: 'SEO Marketing', description: 'sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Eget arcu dictum varius duis at consectetur lorem donec.', slug: 'seo-marketing' },
-    { icon: Megaphone, title: 'Digital Marketing', description: 'sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Eget arcu dictum varius duis at consectetur lorem donec.', slug: 'digital-marketing' },
-    { icon: Share2, title: 'Social Marketing', description: 'sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Eget arcu dictum varius duis at consectetur lorem donec.', slug: 'social-marketing' },
-    { icon: FileText, title: 'Content Marketing', description: 'sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Eget arcu dictum varius duis at consectetur lorem donec.', slug: 'content-marketing' },
-    { icon: TrendingUp, title: 'Market Research', description: 'sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Eget arcu dictum varius duis at consectetur lorem donec.', slug: 'market-research' },
-    { icon: Key, title: 'Keyword Research', description: 'sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Eget arcu dictum varius duis at consectetur lorem donec.', slug: 'keyword-research' },
+    { icon: 'Search', title: 'SEO Marketing', description: 'sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Eget arcu dictum varius duis at consectetur lorem donec.', slug: 'seo-marketing' },
+    { icon: 'Megaphone', title: 'Digital Marketing', description: 'sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Eget arcu dictum varius duis at consectetur lorem donec.', slug: 'digital-marketing' },
+    { icon: 'Share2', title: 'Social Marketing', description: 'sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Eget arcu dictum varius duis at consectetur lorem donec.', slug: 'social-marketing' },
+    { icon: 'FileText', title: 'Content Marketing', description: 'sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Eget arcu dictum varius duis at consectetur lorem donec.', slug: 'content-marketing' },
+    { icon: 'TrendingUp', title: 'Market Research', description: 'sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Eget arcu dictum varius duis at consectetur lorem donec.', slug: 'market-research' },
+    { icon: 'Key', title: 'Keyword Research', description: 'sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Eget arcu dictum varius duis at consectetur lorem donec.', slug: 'keyword-research' },
 ];
 
 export const metadata = {

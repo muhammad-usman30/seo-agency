@@ -40,8 +40,8 @@ export default function AdminPricingPage() {
         <div>
             <div className="flex justify-between items-center mb-6">
                 <h1 className="text-2xl font-bold">Pricing Plans</h1>
-                <Button onClick={() => { setEditingPlan(null); setShowForm(true); }} variant="primary" size="sm">
-                    <Plus className="w-4 h-4 mr-2" /> Add Plan
+                <Button className='flex items-center' onClick={() => { setEditingPlan(null); setShowForm(true); }} variant="primary" size="sm">
+                    <Plus className="w-4 h-4 mr-2" /> <span>Add Plan</span>
                 </Button>
             </div>
 
@@ -49,7 +49,7 @@ export default function AdminPricingPage() {
                 <div className="mb-8 bg-white rounded-xl shadow-md p-6">
                     <h2 className="text-xl font-bold mb-4">{editingPlan ? 'Edit Plan' : 'Create New Plan'}</h2>
                     <PricingForm initialData={editingPlan} onSuccess={() => { setShowForm(false); setEditingPlan(null); fetchPlans(); }} />
-                    <button onClick={() => { setShowForm(false); setEditingPlan(null); }} className="mt-4 text-navy-500">Cancel</button>
+                    <button onClick={() => { setShowForm(false); setEditingPlan(null); }} className="mt-4 text-navy-500 flex items-center border px-10 py-2.5 rounded-full hover:bg-gray-200 hover:text-black">Cancel</button>
                 </div>
             )}
 

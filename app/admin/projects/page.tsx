@@ -40,8 +40,8 @@ export default function AdminProjectsPage() {
         <div>
             <div className="flex justify-between items-center mb-6">
                 <h1 className="text-2xl font-bold">Projects</h1>
-                <Button onClick={() => { setEditingProject(null); setShowForm(true); }} variant="primary" size="sm">
-                    <Plus className="w-4 h-4 mr-2" /> Add Project
+                <Button className='flex items-center' onClick={() => { setEditingProject(null); setShowForm(true); }} variant="primary" size="sm">
+                    <Plus className="w-4 h-4 mr-2" /> <span>Add Project</span>
                 </Button>
             </div>
 
@@ -49,7 +49,7 @@ export default function AdminProjectsPage() {
                 <div className="mb-8 bg-white rounded-xl shadow-md p-6">
                     <h2 className="text-xl font-bold mb-4">{editingProject ? 'Edit Project' : 'Create New Project'}</h2>
                     <ProjectForm initialData={editingProject} onSuccess={() => { setShowForm(false); setEditingProject(null); fetchProjects(); }} />
-                    <button onClick={() => { setShowForm(false); setEditingProject(null); }} className="mt-4 text-navy-500">Cancel</button>
+                    <button onClick={() => { setShowForm(false); setEditingProject(null); }} className="mt-4 text-navy-500 flex items-center border px-12 py-2.5 rounded-full hover:bg-gray-200 hover:text-black">Cancel</button>
                 </div>
             )}
 

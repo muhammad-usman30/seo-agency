@@ -181,11 +181,21 @@ export default function ContactPage() {
 
                     {/* Map Placeholder */}
                     <div className="mt-12">
-                        <GradientPlaceholder aspectRatio="video" label="Map Location" />
+                        <iframe
+                            src="https://www.google.com/maps?q=Lahore,Punjab,Pakistan&output=embed"
+                            width="100%"
+                            height="500"
+                            style={{ border: 0 }}
+                            allowFullScreen
+                            loading="lazy"
+                            referrerPolicy="no-referrer-when-downgrade"
+                            title="Lahore Map"
+                            className='rounded-xl'
+                        ></iframe>
+                        {/* <GradientPlaceholder aspectRatio="video" label="Map Location" /> */}
                     </div>
                 </div>
             </section>
-
             <Footer />
         </>
     );

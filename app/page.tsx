@@ -9,7 +9,7 @@ import Testimonials from '@/components/sections/Testimonials';
 import Blog from '@/components/sections/Blog';
 import CTASection from '@/components/sections/CTASection';
 import Footer from '@/components/layout/Footer';
-import Features1 from '@/components/sections/Features1';
+import OurStrategy from '@/components/sections/OurStrategy';
 
 export const metadata = {
   title: 'SEORE - Premium SEO Agency | Boost Your Rankings & Traffic',
@@ -37,7 +37,7 @@ export default function HomePage() {
       <Hero />
       <AboutPreview />
       <Services />
-      <Features1 />
+      <OurStrategy />
       <WorkingProcess />
       <Projects />
       <Pricing />

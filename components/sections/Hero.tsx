@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import CTAButton from '@/components/ui/CTAButton';
 import { Users, TrendingUp } from 'lucide-react';
 import Image from 'next/image';
+import { heroContent } from '@/data/home/heroData';
 
 export default function Hero() {
     return (
@@ -16,42 +17,49 @@ export default function Hero() {
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.6 }}
                     >
-                        <h5 className="gradient-text font-semibold mb-3">Strategy Driven SEO Agency</h5>
+                        <h5 className="gradient-text font-semibold mb-3">
+                            {heroContent.badge}
+                        </h5>
                         <h1 className="text-4xl lg:text-6xl font-bold leading-loose mb-6">
-                            Higher ranking & <br />
-                            <span className='pt-3 block'>traffic with our</span>{' '}
-                            <span className="gradient-text">powerful tactics</span>
+                            {heroContent.title.line1} <br />
+                            <span className="pt-3 block">
+                                {heroContent.title.line2}
+                            </span>{' '}
+                            <span className="gradient-text">
+                                {heroContent.title.highlight}
+                            </span>
                         </h1>
                         <p className="text-lg text-navy-600 mb-8">
-                            Creating SEO-optimized website content involves several key strategies
-                            and best practices to ensure your website ranks well in search engine
-                            results and attracts the right audience.
+                            {heroContent.description}
                         </p>
                         <div className="flex flex-wrap gap-4 mb-8">
-                            <CTAButton href="/contact" variant="primary" size="lg">
-                                Get Started
-                            </CTAButton>
-                            <CTAButton href="/services" variant="outline" size="lg">
-                                Learn More
-                            </CTAButton>
+                            {heroContent.buttons.map((btn, i) => (
+                                <CTAButton
+                                    key={i}
+                                    href={btn.href}
+                                    variant={btn.variant}
+                                    size="lg"
+                                >
+                                    {btn.label}
+                                </CTAButton>
+                            ))}
                         </div>
-
                         {/* Stats */}
                         <div className="flex gap-8 pt-6 border-t border-gray-200">
-                            <div>
-                                <div className="flex items-center gap-2 text-3xl font-bold text-navy-800">
-                                    <Users className="w-6 h-6 text-primary-500" />
-                                    10k+
-                                </div>
-                                <p className="text-navy-500">World Wide Clients</p>
-                            </div>
-                            <div>
-                                <div className="flex items-center gap-2 text-3xl font-bold text-navy-800">
-                                    <TrendingUp className="w-6 h-6 text-primary-500" />
-                                    200+
-                                </div>
-                                <p className="text-navy-500">Product Sales</p>
-                            </div>
+                            {heroContent.stats.map((stat, i) => {
+                                const Icon = stat.icon === 'users' ? Users : TrendingUp;
+                                return (
+                                    <div key={i}>
+                                        <div className="flex items-center gap-2 text-3xl font-bold text-navy-800">
+                                            <Icon className="w-6 h-6 text-primary-500" />
+                                            {stat.value}
+                                        </div>
+                                        <p className="text-navy-500">
+                                            {stat.label}
+                                        </p>
+                                    </div>
+                                );
+                            })}
                         </div>
                     </motion.div>
 

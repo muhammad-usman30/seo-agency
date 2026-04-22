@@ -107,7 +107,7 @@ export default function ProjectForm({ initialData, onSuccess }: ProjectFormProps
 
             <div>
                 <label className="block text-sm font-medium mb-2">Image URL</label>
-                <input {...register('imageUrl')} className="w-full px-4 py-2 border rounded-lg" placeholder="https://..." />
+                <input {...register('imageUrl')} width={300} height={150} className="w-full px-4 py-2 border rounded-lg" placeholder="https://..." />
             </div>
 
             <div>

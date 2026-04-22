@@ -5,7 +5,6 @@ import ServiceCard from '@/components/ui/ServiceCard';
 import WorkingProcess from '@/components/sections/WorkingProcess';
 import Pricing from '@/components/sections/Pricing';
 import Footer from '@/components/layout/Footer';
-import { Search, Megaphone, Share2, FileText, TrendingUp, Key } from 'lucide-react';
 
 const services = [
     { icon: 'Search', title: 'SEO Marketing', description: 'sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Eget arcu dictum varius duis at consectetur lorem donec.', slug: 'seo-marketing' },

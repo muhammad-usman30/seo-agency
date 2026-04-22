@@ -1,33 +1,44 @@
-// components/sections/Testimonials.tsx
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronLeft, ChevronRight, Star } from 'lucide-react';
 import SectionHeading from '@/components/ui/SectionHeading';
-
-const testimonials = [
-    { name: 'John D', role: 'Marketing Manager', content: 'From the initial consultation support digital marketing have strategy and achieve our business goals.', rating: 5 },
-    { name: 'David L', role: 'Founder Of Ms Solutions', content: 'The results speak for themselves. Their strategies and thorough market analysis are unmatched.', rating: 5 },
-    { name: 'Emily R', role: 'Owner Of Sweet Delights', content: 'We have working with [Your Company Name] brought in more qualified leads than ever before. I highly recommend.', rating: 5 },
-];
+import { testimonialHeading, testimonials } from '@/data/home/testimonialsData';
 
 export default function Testimonials() {
     const [current, setCurrent] = useState(0);
+    const [paused, setPaused] = useState(false);
 
-    const next = () => setCurrent((prev) => (prev + 1) % testimonials.length);
-    const prev = () => setCurrent((prev) => (prev - 1 + testimonials.length) % testimonials.length);
+    const next = () =>
+        setCurrent((prev) => (prev + 1) % testimonials.length);
+
+    const prev = () =>
+        setCurrent((prev) => (prev - 1 + testimonials.length) % testimonials.length);
+
+    useEffect(() => {
+        if (paused) return;
+
+        const interval = setInterval(() => {
+            setCurrent((prev) => (prev + 1) % testimonials.length);
+        }, 3000);
+
+        return () => clearInterval(interval);
+    }, [paused]);
 
     return (
         <section className="py-20 bg-navy-800 text-white">
             <div className="container-custom">
                 <SectionHeading
-                    title="What Our Clients Say"
-                    subtitle="As a process transformation company, we rethinks and rebuilds processes for the digital age."
-                    centered={false}
+                    title={testimonialHeading.title}
+                    subtitle={testimonialHeading.subtitle}
+                    centered
                 />
-
-                <div className="relative max-w-4xl mx-auto">
+                <div
+                    className="relative max-w-4xl mx-auto"
+                    onMouseEnter={() => setPaused(true)}
+                    onMouseLeave={() => setPaused(false)}
+                >
                     <AnimatePresence mode="wait">
                         <motion.div
                             key={current}
@@ -39,19 +50,38 @@ export default function Testimonials() {
                         >
                             <div className="flex justify-center gap-1 mb-6">
                                 {[...Array(testimonials[current].rating)].map((_, i) => (
-                                    <Star key={i} className="w-5 h-5 fill-primary-500 text-primary-500" />
+                                    <Star
+                                        key={i}
+                                        className="w-5 h-5 fill-primary-500 text-primary-500"
+                                    />
                                 ))}
                             </div>
-                            <p className="text-xl md:text-2xl mb-8 italic">"{testimonials[current].content}"</p>
-                            <h4 className="text-xl font-bold">{testimonials[current].name}</h4>
-                            <p className="text-navy-300">{testimonials[current].role}</p>
+
+                            <p className="text-xl md:text-2xl mb-8 italic">
+                                "{testimonials[current].content}"
+                            </p>
+
+                            <h4 className="text-xl font-bold">
+                                {testimonials[current].name}
+                            </h4>
+                            <p className="text-navy-300">
+                                {testimonials[current].role}
+                            </p>
                         </motion.div>
                     </AnimatePresence>
 
-                    <button onClick={prev} className="absolute left-0 top-1/2 -translate-y-1/2 p-2 rounded-full bg-white/10 hover:bg-white/20 transition">
+                    {/* Controls */}
+                    <button
+                        onClick={prev}
+                        className="absolute left-0 top-1/2 -translate-y-1/2 p-2 rounded-full bg-white/10 hover:bg-white/20 transition"
+                    >
                         <ChevronLeft className="w-6 h-6" />
                     </button>
-                    <button onClick={next} className="absolute right-0 top-1/2 -translate-y-1/2 p-2 rounded-full bg-white/10 hover:bg-white/20 transition">
+
+                    <button
+                        onClick={next}
+                        className="absolute right-0 top-1/2 -translate-y-1/2 p-2 rounded-full bg-white/10 hover:bg-white/20 transition"
+                    >
                         <ChevronRight className="w-6 h-6" />
                     </button>
                 </div>

@@ -23,8 +23,8 @@ export default function Testimonials() {
             <div className="container-custom">
                 <SectionHeading
                     title="What Our Clients Say"
-                    subtitle="As a process transformation company, we rethinks and rebuilds processes for the digital age."
-                    centered={false}
+                    subtitle="Voices of Our Clients"
+                    centered={true}
                 />
 
                 <div className="relative max-w-4xl mx-auto">

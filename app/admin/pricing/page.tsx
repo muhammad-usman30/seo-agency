@@ -9,6 +9,7 @@ import Button from '@/components/ui/Button';
 import PricingForm from '@/components/admin/PricingForm';
 import { Edit, Trash2, Plus } from 'lucide-react';
 import { PricingPlan } from '@/types';
+import LoadingState from '@/components/ui/Loading';
 
 export default function AdminPricingPage() {
     const [plans, setPlans] = useState<PricingPlan[]>([]);
@@ -46,51 +47,57 @@ export default function AdminPricingPage() {
             </div>
 
             {showForm && (
-                <div className="mb-8 bg-white rounded-xl shadow-md p-6">
+                <div className="mb-8 bg-white rounded-xl shadow-md p-6 relative">
                     <h2 className="text-xl font-bold mb-4">{editingPlan ? 'Edit Plan' : 'Create New Plan'}</h2>
-                    <PricingForm initialData={editingPlan} onSuccess={() => { setShowForm(false); setEditingPlan(null); fetchPlans(); }} />
-                    <button onClick={() => { setShowForm(false); setEditingPlan(null); }} className="mt-4 text-navy-500 flex items-center border px-10 py-2.5 rounded-full hover:bg-gray-200 hover:text-black">Cancel</button>
+                    <PricingForm initialData={editingPlan}
+                        onSuccess={() => { setShowForm(false); setEditingPlan(null); fetchPlans(); }}
+                        onCancel={() => { setShowForm(false); setEditingPlan(null); }}
+                    />
                 </div>
             )}
 
             {loading ? (
-                <div className="text-center py-12">Loading...</div>
+                <LoadingState />
             ) : (
-                <div className="bg-white rounded-xl shadow-md overflow-hidden">
-                    <table className="w-full">
-                        <thead className="bg-gray-50">
-                            <tr>
-                                <th className="px-6 py-3 text-left text-sm font-semibold">Name</th>
-                                <th className="px-6 py-3 text-left text-sm font-semibold">Price</th>
-                                <th className="px-6 py-3 text-left text-sm font-semibold">Featured</th>
-                                <th className="px-6 py-3 text-left text-sm font-semibold">Published</th>
-                                <th className="px-6 py-3 text-left text-sm font-semibold">Order</th>
-                                <th className="px-6 py-3 text-left text-sm font-semibold">Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody className="divide-y">
-                            {plans.map((plan) => (
-                                <tr key={plan.id}>
-                                    <td className="px-6 py-4">{plan.name}</td>
-                                    <td className="px-6 py-4">${plan.priceMonthly}/mo</td>
-                                    <td className="px-6 py-4">{plan.isFeatured ? '✓' : '✗'}</td>
-                                    <td className="px-6 py-4">{plan.isPublished ? '✓' : '✗'}</td>
-                                    <td className="px-6 py-4">{plan.order}</td>
-                                    <td className="px-6 py-4">
-                                        <div className="flex gap-2">
-                                            <button onClick={() => { setEditingPlan(plan); setShowForm(true); }} className="text-blue-500 hover:text-blue-700">
-                                                <Edit className="w-4 h-4" />
-                                            </button>
-                                            <button onClick={() => handleDelete(plan.id)} className="text-red-500 hover:text-red-700">
-                                                <Trash2 className="w-4 h-4" />
-                                            </button>
-                                        </div>
-                                    </td>
-                                </tr>
-                            ))}
-                        </tbody>
-                    </table>
-                </div>
+                <>
+                    {!showForm && (
+                        <div className="bg-white rounded-xl shadow-md overflow-hidden">
+                            <table className="w-full">
+                                <thead className="bg-gray-50">
+                                    <tr>
+                                        <th className="px-6 py-3 text-left text-sm font-semibold">Name</th>
+                                        <th className="px-6 py-3 text-left text-sm font-semibold">Price</th>
+                                        <th className="px-6 py-3 text-left text-sm font-semibold">Featured</th>
+                                        <th className="px-6 py-3 text-left text-sm font-semibold">Published</th>
+                                        <th className="px-6 py-3 text-left text-sm font-semibold">Order</th>
+                                        <th className="px-6 py-3 text-left text-sm font-semibold">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody className="divide-y">
+                                    {plans.map((plan) => (
+                                        <tr key={plan.id}>
+                                            <td className="px-6 py-4">{plan.name}</td>
+                                            <td className="px-6 py-4">${plan.priceMonthly}/mo</td>
+                                            <td className="px-6 py-4">{plan.isFeatured ? '✓' : '✗'}</td>
+                                            <td className="px-6 py-4">{plan.isPublished ? '✓' : '✗'}</td>
+                                            <td className="px-6 py-4">{plan.order}</td>
+                                            <td className="px-6 py-4">
+                                                <div className="flex gap-2">
+                                                    <button onClick={() => { setEditingPlan(plan); setShowForm(true); }} className="text-blue-500 hover:text-blue-700">
+                                                        <Edit className="w-4 h-4" />
+                                                    </button>
+                                                    <button onClick={() => handleDelete(plan.id)} className="text-red-500 hover:text-red-700">
+                                                        <Trash2 className="w-4 h-4" />
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </table>
+                        </div>
+                    )}
+                </>
             )}
         </div>
     );

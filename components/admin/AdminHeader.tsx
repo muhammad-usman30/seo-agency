@@ -20,7 +20,7 @@ export default function AdminHeader() {
             <div className="flex justify-between items-center">
                 <h1 className="text-xl font-semibold text-navy-800">Admin Dashboard</h1>
                 <div className="flex items-center gap-3">
-                    <span className="text-sm text-navy-600">{user?.email}</span>
+                    <span className="text-sm text-navy-600">{user?.email?.split('@')[0]}</span>
                     <div className="w-8 h-8 gradient-bg rounded-full flex items-center justify-center text-white font-bold">
                         {user?.email?.[0].toUpperCase()}
                     </div>

@@ -23,10 +23,10 @@ export default function AdminSidebar() {
     };
 
     return (
-        <aside className="w-64 bg-navy-800 text-white flex flex-col">
-            <div className="p-6">
-                <h2 className="text-2xl font-bold gradient-text">SEORE Admin</h2>
-            </div>
+        <aside className="w-64 bg-navy-800 text-white flex flex-col pt-10 h-[calc(100vh-125px)]">
+            {/* <div className="p-6">
+                <h2 className="text-2xl font-bold gradient-text">JAVUSSEO Admin</h2>
+            </div> */}
 
             <nav className="flex-1 px-4 space-y-2">
                 {navItems.map((item) => {

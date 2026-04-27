@@ -3,13 +3,13 @@
 
 import { motion } from 'framer-motion';
 import { Check } from 'lucide-react';
-import { PricingPlan } from '@/types';
+import { PricingPlan, PricingPlanUI } from '@/types';
 import CTAButton from './CTAButton';
 
 interface PricingCardProps {
-    plan: PricingPlan;
+    plan: PricingPlanUI;
     index: number;
-}
+  }
 
 export default function PricingCard({ plan, index }: PricingCardProps) {
     return (

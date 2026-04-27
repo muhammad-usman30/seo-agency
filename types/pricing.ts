@@ -1,4 +1,3 @@
-// types/pricing.ts
 export interface PricingPlan {
     id: string;
     name: string;
@@ -12,3 +11,8 @@ export interface PricingPlan {
     createdAt: Date;
     updatedAt: Date;
 }
+
+export type PricingPlanUI = Omit<
+    PricingPlan,
+    'createdAt' | 'updatedAt'
+>;

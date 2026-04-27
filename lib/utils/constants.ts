@@ -1,16 +1,16 @@
 // lib/utils/constants.ts
 export const SITE_CONFIG = {
-    name: 'SEORE',
+    name: 'JAVUSSEO',
     tagline: 'Strategy Driven SEO Agency',
     description: 'Premium SEO agency helping businesses achieve higher rankings and increased organic traffic.',
-    email: 'info@domain.com',
+    email: 'javusseo@gmail.com',
     phone: '+0 789 456 123',
-    address: '8819 Ohio St. South G California 90280',
+    address: 'F79H+C5F, Block M Phase 2 Johar Town, Lahore',
     social: {
-        facebook: 'https://facebook.com/seore',
-        twitter: 'https://twitter.com/seore',
-        linkedin: 'https://linkedin.com/company/seore',
-        instagram: 'https://instagram.com/seore',
+        facebook: 'https://facebook.com/JAVUSSEO',
+        twitter: 'https://twitter.com/JAVUSSEO',
+        linkedin: 'https://linkedin.com/company/JAVUSSEO',
+        instagram: 'https://instagram.com/JAVUSSEO',
     },
 };
 

@@ -79,8 +79,8 @@ export default function ContactPage() {
                                     <Mail className="w-10 h-10 text-primary-500 mb-4" />
                                     <h3 className="text-xl font-bold mb-2">Email Us</h3>
                                     <p className="text-navy-600 mb-4">Shoot us an email anytime.</p>
-                                    <a href="mailto:info@domain.com" className="text-primary-600 font-semibold">
-                                        info@domain.com →
+                                    <a href="mailto:javusseo@gmail.com" className="text-primary-600 font-semibold">
+                                        javusseo@gmail.com →
                                     </a>
                                 </div>
 

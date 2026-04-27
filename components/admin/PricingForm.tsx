@@ -27,9 +27,10 @@ type PricingFormData = z.infer<typeof pricingSchema>;
 interface PricingFormProps {
     initialData?: any;
     onSuccess: () => void;
+    onCancel: () => void;
 }
 
-export default function PricingForm({ initialData, onSuccess }: PricingFormProps) {
+export default function PricingForm({ initialData, onSuccess, onCancel }: PricingFormProps) {
     const [loading, setLoading] = useState(false);
 
     const { register, control, handleSubmit, formState: { errors } } = useForm<PricingFormData>({
@@ -73,26 +74,26 @@ export default function PricingForm({ initialData, onSuccess }: PricingFormProps
     };
 
     return (
-        <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-            <div>
+        <form onSubmit={handleSubmit(onSubmit)} className="space-y-6 overflow-y-auto scrollbar-width-thin max-h-[580px]">
+            <div className='pr-4'>
                 <label className="block text-sm font-medium mb-2">Plan Name</label>
                 <input {...register('name')} className="w-full px-4 py-2 border rounded-lg" />
                 {errors.name && <p className="text-red-500 text-sm mt-1">{errors.name.message}</p>}
             </div>
 
-            <div>
+            <div className='pr-4'>
                 <label className="block text-sm font-medium mb-2">Price (Monthly)</label>
                 <input type="number" {...register('priceMonthly', { valueAsNumber: true })} className="w-full px-4 py-2 border rounded-lg" />
                 {errors.priceMonthly && <p className="text-red-500 text-sm mt-1">{errors.priceMonthly.message}</p>}
             </div>
 
-            <div>
+            <div className='pr-4'>
                 <label className="block text-sm font-medium mb-2">Description</label>
                 <textarea {...register('description')} rows={3} className="w-full px-4 py-2 border rounded-lg" />
                 {errors.description && <p className="text-red-500 text-sm mt-1">{errors.description.message}</p>}
             </div>
 
-            <div>
+            <div className='pr-4'>
                 <label className="block text-sm font-medium mb-2">Features</label>
                 {fields.map((field, index) => (
                     <div key={field.id} className="flex gap-2 mb-2">
@@ -119,19 +120,29 @@ export default function PricingForm({ initialData, onSuccess }: PricingFormProps
                 </label>
             </div>
 
-            <div>
+            <div className='pr-4'>
                 <label className="block text-sm font-medium mb-2">CTA Button Text</label>
                 <input {...register('ctaText')} className="w-full px-4 py-2 border rounded-lg" />
             </div>
 
-            <div>
+            <div className='pr-4'>
                 <label className="block text-sm font-medium mb-2">Order</label>
                 <input type="number" {...register('order', { valueAsNumber: true })} className="w-full px-4 py-2 border rounded-lg" />
             </div>
+            <div className='flex gap-2 justify-end pr-4'>
+                <Button
+                    type="button"
+                    variant="outline"
+                    onClick={onCancel}
+                    disabled={loading}
+                >
+                    Cancel
+                </Button>
+                <Button type="submit" disabled={loading} variant="primary">
+                    {loading ? 'Saving...' : initialData ? 'Update Plan' : 'Create Plan'}
+                </Button>
 
-            <Button type="submit" disabled={loading} variant="primary">
-                {loading ? 'Saving...' : initialData ? 'Update Plan' : 'Create Plan'}
-            </Button>
+            </div>
         </form>
     );
 }

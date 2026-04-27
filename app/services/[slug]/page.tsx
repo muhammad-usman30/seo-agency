@@ -8,6 +8,7 @@ import CTAButton from '@/components/ui/CTAButton';
 import FAQAccordion from '@/components/ui/FAQAccordion';
 import Footer from '@/components/layout/Footer';
 import { CheckCircle, HelpCircle, TrendingUp, Target, BarChart, Globe } from 'lucide-react';
+import Link from 'next/link';
 
 const serviceData: Record<string, any> = {
     'seo-marketing': {
@@ -94,9 +95,9 @@ export default function SingleServicePage() {
                                 <ul className="space-y-3">
                                     {Object.keys(serviceData).map((key) => (
                                         <li key={key}>
-                                            <a href={`/services/${key}`} className={`block px-4 py-2 rounded-lg transition ${slug === key ? 'gradient-bg text-white' : 'hover:bg-white'}`}>
+                                            <Link href={`/services/${key}`} className={`block px-4 py-2 rounded-lg transition ${slug === key ? 'gradient-bg text-white' : 'hover:bg-white'}`}>
                                                 {serviceData[key].title}
-                                            </a>
+                                            </Link>
                                         </li>
                                     ))}
                                 </ul>

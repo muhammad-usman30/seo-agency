@@ -16,7 +16,7 @@ const services = [
 ];
 
 export const metadata = {
-    title: 'Services - SEORE | Premium SEO & Digital Marketing Services',
+    title: 'Services - JAVUSSEO | Premium SEO & Digital Marketing Services',
     description: 'Explore our comprehensive range of SEO, digital marketing, social media, and content marketing services designed to boost your online presence.',
 };
 

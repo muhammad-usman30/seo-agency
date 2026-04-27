@@ -7,6 +7,7 @@ import { onAuthStateChanged } from 'firebase/auth';
 import { auth } from '@/lib/firebase/config';
 import AdminSidebar from '@/components/admin/AdminSidebar';
 import AdminHeader from '@/components/admin/AdminHeader';
+import Loading from '@/components/ui/Loading';
 
 export default function AdminLayout({
     children,
@@ -34,9 +35,9 @@ export default function AdminLayout({
 
     if (loading) {
         return (
-            <div className="min-h-screen flex items-center justify-center">
-                <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary-600"></div>
-            </div>
+            <div className="bg-cream flex items-center justify-center h-[calc(100vh-125px)] rounded-xl">
+            <Loading />
+        </div>
         );
     }
 
@@ -45,13 +46,15 @@ export default function AdminLayout({
     }
 
     return (
-        <div className="flex h-screen bg-gray-100">
-            <AdminSidebar />
-            <div className="flex-1 flex flex-col overflow-hidden">
-                <AdminHeader />
-                <main className="flex-1 overflow-y-auto p-6">
-                    {children}
-                </main>
+        <div className="h-screen bg-gray-100">
+            <div className="container-custom flex">
+                <AdminSidebar />
+                <div className="flex-1 flex flex-col overflow-hidden">
+                    <AdminHeader />
+                    <main className="flex-1 overflow-y-auto p-6">
+                        {children}
+                    </main>
+                </div>
             </div>
         </div>
     );

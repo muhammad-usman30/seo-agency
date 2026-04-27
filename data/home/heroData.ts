@@ -15,5 +15,5 @@ export const heroContent = {
         { icon: "users", value: "10k+", label: "World Wide Clients" },
         { icon: "growth", value: "200+", label: "Product Sales" },
     ],
-};
+} as const;
 

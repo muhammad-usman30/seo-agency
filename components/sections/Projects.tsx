@@ -6,9 +6,9 @@ import { collection, getDocs } from 'firebase/firestore';
 import { db } from '@/lib/firebase/config';
 import SectionHeading from '@/components/ui/SectionHeading';
 import GradientPlaceholder from '@/components/ui/GradientPlaceholder';
-import LoadingState from '@/components/ui/LoadingState';
+import LoadingState from '@/components/ui/Loading';
 import { projectsHeading } from '@/data/home/projectsData';
-import { ProjectCardSkeleton } from '../ui/ProjectCardSkeleton';
+import { CardSkeleton } from '../ui/CardSkeleton';
 
 interface Project {
     id: string;
@@ -75,7 +75,7 @@ export default function Projects() {
                     <SectionHeading {...projectsHeading} />
                     <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                         {[1, 2, 3].map((item) => (
-                            <ProjectCardSkeleton key={item} />
+                            <CardSkeleton key={item} />
                         ))}
                     </div>
                 </div>

@@ -8,7 +8,7 @@ import { db } from '@/lib/firebase/config';
 import HeroBanner from '@/components/ui/HeroBanner';
 import SectionHeading from '@/components/ui/SectionHeading';
 import GradientPlaceholder from '@/components/ui/GradientPlaceholder';
-import LoadingState from '@/components/ui/LoadingState';
+import LoadingState from '@/components/ui/Loading';
 import Footer from '@/components/layout/Footer';
 import { Calendar, User, Clock } from 'lucide-react';
 

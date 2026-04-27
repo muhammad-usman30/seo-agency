@@ -3,7 +3,7 @@ import HeroBanner from '@/components/ui/HeroBanner';
 import Footer from '@/components/layout/Footer';
 
 export const metadata = {
-    title: 'Refund Policy - SEORE',
+    title: 'Refund Policy - JAVUSSEO',
     description: 'Learn about our refund policy and money-back guarantee for SEO and digital marketing services.'
 };
 
@@ -43,7 +43,7 @@ export default function RefundPage() {
                         <h2>4. How to Request a Refund</h2>
                         <p>To request a refund, please:</p>
                         <ol>
-                            <li>Email us at <a href="mailto:refunds@seore.com">refunds@seore.com</a></li>
+                            <li>Email us at <a href="mailto:refunds@JAVUSSEO.com">refunds@JAVUSSEO.com</a></li>
                             <li>Include your order number and reason for refund</li>
                             <li>Allow 5-7 business days for processing</li>
                         </ol>
@@ -58,7 +58,7 @@ export default function RefundPage() {
                         <p>Please contact us first before initiating a chargeback. Unauthorized chargebacks may result in account termination and legal action.</p>
 
                         <h2>8. Contact Us</h2>
-                        <p>For refund-related questions, contact us at: <a href="mailto:refunds@seore.com">refunds@seore.com</a></p>
+                        <p>For refund-related questions, contact us at: <a href="mailto:refunds@JAVUSSEO.com">refunds@JAVUSSEO.com</a></p>
                     </div>
                 </div>
             </section>

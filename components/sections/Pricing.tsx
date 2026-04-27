@@ -1,4 +1,3 @@
-// components/sections/Pricing.tsx
 'use client';
 
 import { useState, useEffect } from 'react';
@@ -6,7 +5,9 @@ import { collection, query, where, orderBy, getDocs } from 'firebase/firestore';
 import { db } from '@/lib/firebase/config';
 import SectionHeading from '@/components/ui/SectionHeading';
 import PricingCard from '@/components/ui/PricingCard';
-import LoadingState from '@/components/ui/LoadingState';
+import { defaultPricingPlans } from '@/data/home/defaultPricingData';
+import DefaultPricingCard from '../ui/DefaultPricingCard';
+import PricingCardSkeleton from '../ui/PricingCardSkeleton';
 
 interface PricingPlan {
     id: string;
@@ -74,7 +75,11 @@ export default function Pricing() {
                         title="Choose Your Plan"
                         subtitle="As a process transformation company, we rethinks and rebuilds processes for the digital age."
                     />
-                    <LoadingState />
+                        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+                            {Array.from({ length: 3 }).map((_, i) => (
+                                <PricingCardSkeleton key={i} />
+                            ))}
+                        </div>
                 </div>
             </section>
         );
@@ -90,54 +95,19 @@ export default function Pricing() {
                 />
 
                 {error && (
-                    <div className="text-center py-12">
-                        <div className="bg-red-50 border border-red-200 rounded-lg p-4 mb-6">
-                            <p className="text-red-600">{error}</p>
-                            <button
-                                onClick={() => window.location.reload()}
-                                className="mt-2 text-primary-600 hover:text-primary-700 font-semibold"
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
+                        {defaultPricingPlans.map((plan, index) => (
+                            <div
+                                key={plan.id}
+                                className="animate-fade-up"
+                                style={{ animationDelay: `${index * 100}ms` }}
                             >
-                                Try Again
-                            </button>
-                        </div>
-                        {/* Demo pricing plans for testing */}
-                        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                            <div className="bg-white rounded-2xl p-6 shadow-lg">
-                                <h3 className="text-2xl font-bold mb-2">Basic</h3>
-                                <p className="text-navy-500 mb-4">For small businesses</p>
-                                <div className="text-4xl font-bold mb-6">$19<span className="text-lg">/mo</span></div>
-                                <ul className="space-y-3 mb-8">
-                                    <li>✓ SEO Audit</li>
-                                    <li>✓ Keyword Research</li>
-                                    <li>✓ Monthly Report</li>
-                                </ul>
-                                <button className="w-full btn-outline">Get Started</button>
+                                <DefaultPricingCard
+                                    plan={plan}
+                                    isStandard={plan.id === 'standard'}
+                                />
                             </div>
-                            <div className="bg-white rounded-2xl p-6 shadow-lg ring-2 ring-primary-500">
-                                <h3 className="text-2xl font-bold mb-2">Pro</h3>
-                                <p className="text-navy-500 mb-4">For growing businesses</p>
-                                <div className="text-4xl font-bold mb-6">$49<span className="text-lg">/mo</span></div>
-                                <ul className="space-y-3 mb-8">
-                                    <li>✓ Everything in Basic</li>
-                                    <li>✓ Content Optimization</li>
-                                    <li>✓ Link Building</li>
-                                    <li>✓ Weekly Reports</li>
-                                </ul>
-                                <button className="w-full btn-primary">Get Started</button>
-                            </div>
-                            <div className="bg-white rounded-2xl p-6 shadow-lg">
-                                <h3 className="text-2xl font-bold mb-2">Enterprise</h3>
-                                <p className="text-navy-500 mb-4">For large companies</p>
-                                <div className="text-4xl font-bold mb-6">$99<span className="text-lg">/mo</span></div>
-                                <ul className="space-y-3 mb-8">
-                                    <li>✓ Everything in Pro</li>
-                                    <li>✓ Dedicated Account Manager</li>
-                                    <li>✓ Custom Strategy</li>
-                                    <li>✓ Daily Reports</li>
-                                </ul>
-                                <button className="w-full btn-outline">Contact Us</button>
-                            </div>
-                        </div>
+                        ))}
                     </div>
                 )}
 
@@ -152,3 +122,4 @@ export default function Pricing() {
         </section>
     );
 }
+// 0322 2481191

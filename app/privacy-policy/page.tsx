@@ -3,7 +3,7 @@ import HeroBanner from '@/components/ui/HeroBanner';
 import Footer from '@/components/layout/Footer';
 
 export const metadata = {
-    title: 'Privacy Policy - SEORE',
+    title: 'Privacy Policy - JAVUSSEO',
     description: 'Read our privacy policy to understand how we collect, use, and protect your personal information.'
 };
 
@@ -73,7 +73,7 @@ export default function PrivacyPage() {
                         <p>We may update this privacy policy from time to time. We will notify you of any material changes by posting the new policy on this page.</p>
 
                         <h2>11. Contact Us</h2>
-                        <p>If you have questions about this Privacy Policy, please contact us at: <a href="mailto:privacy@seore.com">privacy@seore.com</a></p>
+                        <p>If you have questions about this Privacy Policy, please contact us at: <a href="mailto:privacy@JAVUSSEO.com">privacy@JAVUSSEO.com</a></p>
                     </div>
                 </div>
             </section>

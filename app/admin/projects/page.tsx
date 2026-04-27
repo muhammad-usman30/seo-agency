@@ -9,6 +9,7 @@ import Button from '@/components/ui/Button';
 import ProjectForm from '@/components/admin/ProjectForm';
 import { Edit, Trash2, Plus } from 'lucide-react';
 import { Project } from '@/types';
+import LoadingState from '@/components/ui/Loading';
 
 export default function AdminProjectsPage() {
     const [projects, setProjects] = useState<Project[]>([]);
@@ -48,33 +49,40 @@ export default function AdminProjectsPage() {
             {showForm && (
                 <div className="mb-8 bg-white rounded-xl shadow-md p-6">
                     <h2 className="text-xl font-bold mb-4">{editingProject ? 'Edit Project' : 'Create New Project'}</h2>
-                    <ProjectForm initialData={editingProject} onSuccess={() => { setShowForm(false); setEditingProject(null); fetchProjects(); }} />
+                    <ProjectForm initialData={editingProject}
+                        onSuccess={() => { setShowForm(false); setEditingProject(null); fetchProjects(); }}
+                        onCancel={() => { setShowForm(false); setEditingProject(null); }}
+                    />
                     <button onClick={() => { setShowForm(false); setEditingProject(null); }} className="mt-4 text-navy-500 flex items-center border px-12 py-2.5 rounded-full hover:bg-gray-200 hover:text-black">Cancel</button>
                 </div>
             )}
-
             {loading ? (
-                <div className="text-center py-12">Loading...</div>
+                <LoadingState />
             ) : (
-                <div className="grid gap-4">
-                    {projects.map((project) => (
-                        <div key={project.id} className="bg-white rounded-xl shadow-md p-6 flex justify-between items-center">
-                            <div>
-                                <h3 className="font-bold text-lg">{project.title}</h3>
-                                <p className="text-sm text-navy-500">{project.category} • Order: {project.order}</p>
-                                <p className="text-sm">{project.isPublished ? 'Published' : 'Draft'}</p>
-                            </div>
-                            <div className="flex gap-2">
-                                <button onClick={() => { setEditingProject(project); setShowForm(true); }} className="p-2 text-blue-500 hover:bg-blue-50 rounded-lg">
-                                    <Edit className="w-4 h-4" />
-                                </button>
-                                <button onClick={() => handleDelete(project.id)} className="p-2 text-red-500 hover:bg-red-50 rounded-lg">
-                                    <Trash2 className="w-4 h-4" />
-                                </button>
-                            </div>
+                <>
+                    {!showForm && (
+                        <div className="grid gap-4">
+                            {projects.map((project) => (
+                                <div key={project.id} className="bg-white rounded-xl shadow-md p-6 flex justify-between items-center">
+                                    <div>
+                                        <h3 className="font-bold text-lg">{project.title}</h3>
+                                        <p className="text-sm text-navy-500">{project.category} • Order: {project.order}</p>
+                                        <p className="text-sm">{project.isPublished ? 'Published' : 'Draft'}</p>
+                                    </div>
+                                    <div className="flex gap-2">
+                                        <button onClick={() => { setEditingProject(project); setShowForm(true); }} className="p-2 text-blue-500 hover:bg-blue-50 rounded-lg">
+                                            <Edit className="w-4 h-4" />
+                                        </button>
+                                        <button onClick={() => handleDelete(project.id)} className="p-2 text-red-500 hover:bg-red-50 rounded-lg">
+                                            <Trash2 className="w-4 h-4" />
+                                        </button>
+                                    </div>
+                                </div>
+                            ))}
                         </div>
-                    ))}
-                </div>
+                    )}
+                </>
+
             )}
         </div>
     );

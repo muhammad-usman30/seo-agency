@@ -11,7 +11,7 @@ import FAQ from '@/components/sections/FAQ';
 import Footer from '@/components/layout/Footer';
 
 export const metadata = {
-    title: 'About Us - SEORE | Premium SEO Agency',
+    title: 'About Us - JAVUSSEO | Premium SEO Agency',
     description: 'Learn about our 15+ years of experience, proven results, and dedicated team of SEO experts committed to your success.',
 };
 

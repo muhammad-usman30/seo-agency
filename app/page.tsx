@@ -12,13 +12,13 @@ import Footer from '@/components/layout/Footer';
 import OurStrategy from '@/components/sections/OurStrategy';
 
 export const metadata = {
-  title: 'SEORE - Premium SEO Agency | Boost Your Rankings & Traffic',
+  title: 'JAVUSSEO - Premium SEO Agency | Boost Your Rankings & Traffic',
   description: 'Strategy-driven SEO agency helping businesses achieve higher rankings and increased organic traffic with proven tactics and transparent reporting.',
   openGraph: {
-    title: 'SEORE - Premium SEO Agency',
+    title: 'JAVUSSEO - Premium SEO Agency',
     description: 'Boost your website rankings with our powerful SEO strategies',
     url: 'https://seo-agency.com',
-    siteName: 'SEORE',
+    siteName: 'JAVUSSEO',
     images: [
       {
         url: 'https://seo-agency.com/og-image.jpg',

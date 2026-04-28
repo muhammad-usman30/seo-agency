@@ -9,12 +9,16 @@ import PricingForm from '@/components/admin/PricingForm';
 import { Edit, Trash2, Plus, ArrowUp, ArrowDown } from 'lucide-react';
 import { PricingPlan } from '@/types';
 import LoadingState from '@/components/ui/Loading';
+import ConfirmationModal from '@/components/modals/ConfirmModal';
 
 export default function AdminPricingPage() {
     const [plans, setPlans] = useState<PricingPlan[]>([]);
     const [loading, setLoading] = useState(true);
     const [showForm, setShowForm] = useState(false);
     const [editingPlan, setEditingPlan] = useState<PricingPlan | null>(null);
+    const [showDeleteModal, setShowDeleteModal] = useState(false);
+    const [planToDelete, setPlanToDelete] = useState<PricingPlan | null>(null);
+    const [isDeleting, setIsDeleting] = useState(false);
 
     const fetchPlans = async () => {
         setLoading(true);
@@ -29,12 +33,32 @@ export default function AdminPricingPage() {
         fetchPlans();
     }, []);
 
-    const handleDelete = async (id: string) => {
-        if (confirm('Are you sure you want to delete this plan?')) {
-            await deleteDoc(doc(db, 'pricingPlans', id));
-            toast.success('Plan deleted successfully');
+    const handleDeleteClick = (plan: PricingPlan) => {
+        setPlanToDelete(plan);
+        setShowDeleteModal(true);
+    };
+
+    const confirmDelete = async () => {
+        if (!planToDelete) return;
+        
+        setIsDeleting(true);
+        try {
+            await deleteDoc(doc(db, 'pricingPlans', planToDelete.id));
+            toast.success(`"${planToDelete.name}" has been deleted successfully`);
             fetchPlans();
+            setShowDeleteModal(false);
+            setPlanToDelete(null);
+        } catch (error) {
+            console.error('Error deleting plan:', error);
+            toast.error('Failed to delete plan');
+        } finally {
+            setIsDeleting(false);
         }
+    };
+
+    const cancelDelete = () => {
+        setShowDeleteModal(false);
+        setPlanToDelete(null);
     };
 
     const handleMoveUp = async (plan: PricingPlan, index: number) => {
@@ -45,7 +69,6 @@ export default function AdminPricingPage() {
         const prevOrder = prevPlan.order;
         
         try {
-            // Swap orders
             await updateDoc(doc(db, 'pricingPlans', plan.id), { order: prevOrder });
             await updateDoc(doc(db, 'pricingPlans', prevPlan.id), { order: currentOrder });
             toast.success('Order updated successfully');
@@ -63,7 +86,6 @@ export default function AdminPricingPage() {
         const nextOrder = nextPlan.order;
         
         try {
-            // Swap orders
             await updateDoc(doc(db, 'pricingPlans', plan.id), { order: nextOrder });
             await updateDoc(doc(db, 'pricingPlans', nextPlan.id), { order: currentOrder });
             toast.success('Order updated successfully');
@@ -73,7 +95,6 @@ export default function AdminPricingPage() {
         }
     };
 
-    // Check if we can add more plans (max 3)
     const canAddMorePlans = plans.filter(p => p.isPublished).length < 3;
 
     return (
@@ -170,12 +191,14 @@ export default function AdminPricingPage() {
                                                     <button 
                                                         onClick={() => { setEditingPlan(plan); setShowForm(true); }} 
                                                         className="text-blue-500 hover:text-blue-700 transition"
+                                                        title="Edit plan"
                                                     >
                                                         <Edit className="w-4 h-4" />
                                                     </button>
                                                     <button 
-                                                        onClick={() => handleDelete(plan.id)} 
+                                                        onClick={() => handleDeleteClick(plan)} 
                                                         className="text-red-500 hover:text-red-700 transition"
+                                                        title="Delete plan"
                                                     >
                                                         <Trash2 className="w-4 h-4" />
                                                     </button>
@@ -198,6 +221,21 @@ export default function AdminPricingPage() {
                     )}
                 </>
             )}
+
+            {/* Delete Confirmation Modal */}
+            <ConfirmationModal
+                isOpen={showDeleteModal}
+                onClose={cancelDelete}
+                onConfirm={confirmDelete}
+                title="Confirm Deletion"
+                message="Are you sure you want to delete the following pricing plan?"
+                confirmText="Yes, Delete Plan"
+                cancelText="Cancel"
+                type="danger"
+                itemName={planToDelete?.name}
+                itemDetail={planToDelete ? `$${planToDelete.priceMonthly}/month` : undefined}
+                isLoading={isDeleting}
+            />
         </div>
     );
 }

@@ -23,7 +23,7 @@ export default function PricingCard({ plan, index }: PricingCardProps) {
             {/* Popular Badge */}
             {isPopular && (
                 <div className="absolute top-0 right-0">
-                    <div className="bg-gradient-to-r from-amber-400 to-amber-500 text-navy-900 text-xs font-bold px-6 py-3 pt-4 rounded-bl-2xl animate-pulse">
+                    <div className="bg-gradient-to-r from-amber-400 to-amber-500 text-navy-900 text-xs font-bold px-6 py-3 pt-4 rounded-bl-2xl animate-bounce">
                         POPULAR
                     </div>
                 </div>

@@ -32,7 +32,7 @@ export default function Pricing() {
                 setLoading(true);
                 setError(null);
 
-                // Query only published plans and order by 'order' field
+                // Now with the composite index created, we can use orderBy
                 const q = query(
                     collection(db, 'pricingPlans'),
                     where('isPublished', '==', true),
@@ -50,14 +50,17 @@ export default function Pricing() {
                         ...doc.data()
                     } as PricingPlan));
                     
-                    console.log('Fetched pricing plans (ordered):', plansData);
+                    console.log('Fetched pricing plans (ordered by index):', plansData);
                     
                     // Limit to maximum 3 plans
                     const limitedPlans = plansData.slice(0, 3);
                     setPlans(limitedPlans);
 
-                    if (limitedPlans.length === 0) {
+                    if (limitedPlans.length === 0 && plansData.length > 0) {
+                        // This means we have plans but they're not published
                         setError('No published pricing plans found. Please publish some plans in admin panel.');
+                    } else if (limitedPlans.length === 0) {
+                        setError('No pricing plans found. Please add some in admin panel.');
                     }
                 }
             } catch (error: any) {
@@ -99,7 +102,7 @@ export default function Pricing() {
                     subtitle="As a process transformation company, we rethinks and rebuilds processes for the digital age."
                 />
 
-                {error && (
+                {error ? (
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
                         {defaultPricingPlans.slice(0, 3).map((plan, index) => (
                             <div
@@ -114,17 +117,13 @@ export default function Pricing() {
                             </div>
                         ))}
                     </div>
-                )}
-
-                {!error && plans.length > 0 && (
+                ) : plans.length > 0 ? (
                     <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                         {plans.map((plan, index) => (
                             <PricingCard key={plan.id} plan={plan} index={index} />
                         ))}
                     </div>
-                )}
-
-                {!error && plans.length === 0 && (
+                ) : (
                     <div className="text-center py-12">
                         <p className="text-navy-500">No pricing plans available. Please check back later.</p>
                     </div>

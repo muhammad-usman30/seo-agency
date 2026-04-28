@@ -12,6 +12,7 @@ interface ButtonProps {
     onClick?: () => void;
     disabled?: boolean;
     type?: 'button' | 'submit' | 'reset';
+    title?: string;
 }
 
 export default function Button({
@@ -21,7 +22,8 @@ export default function Button({
     className = '',
     onClick,
     disabled = false,
-    type = 'button'
+    type = 'button',
+    title = '',
 }: ButtonProps) {
     const variants = {
         primary: 'gradient-bg text-white hover:shadow-lg',
@@ -44,6 +46,7 @@ export default function Button({
             disabled={disabled}
             className={`rounded-full font-semibold transition-all duration-300 ${variants[variant]} ${sizes[size]} ${className} ${disabled ? 'opacity-50 cursor-not-allowed' : ''}`}
             onClick={onClick}
+            title={title}
         >
             {children}
         </motion.button>

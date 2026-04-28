@@ -1,4 +1,3 @@
-// app/terms/page.tsx (Terms of Service)
 import HeroBanner from '@/components/ui/HeroBanner';
 import Footer from '@/components/layout/Footer';
 

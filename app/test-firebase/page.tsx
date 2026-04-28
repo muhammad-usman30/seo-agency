@@ -1,4 +1,3 @@
-// app/test-firebase/page.tsx
 'use client';
 
 import { useEffect, useState } from 'react';

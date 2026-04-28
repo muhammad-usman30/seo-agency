@@ -14,7 +14,7 @@ interface PricingPlan {
     name: string;
     priceMonthly: number;
     description: string;
-    features: string[];
+    features: string[] | { name: string; included: boolean }[];
     isFeatured: boolean;
     ctaText: string;
     order: number;
@@ -32,8 +32,12 @@ export default function Pricing() {
                 setLoading(true);
                 setError(null);
 
-                // First, try to get all plans (temporarily)
-                const q = query(collection(db, 'pricingPlans'));
+                // Query only published plans and order by 'order' field
+                const q = query(
+                    collection(db, 'pricingPlans'),
+                    where('isPublished', '==', true),
+                    orderBy('order', 'asc')
+                );
                 const snapshot = await getDocs(q);
 
                 if (snapshot.empty) {
@@ -45,13 +49,14 @@ export default function Pricing() {
                         id: doc.id,
                         ...doc.data()
                     } as PricingPlan));
+                    
+                    console.log('Fetched pricing plans (ordered):', plansData);
+                    
+                    // Limit to maximum 3 plans
+                    const limitedPlans = plansData.slice(0, 3);
+                    setPlans(limitedPlans);
 
-                    // Filter published plans
-                    const publishedPlans = plansData.filter(plan => plan.isPublished === true);
-                    console.log('Fetched pricing plans:', publishedPlans);
-                    setPlans(publishedPlans);
-
-                    if (publishedPlans.length === 0) {
+                    if (limitedPlans.length === 0) {
                         setError('No published pricing plans found. Please publish some plans in admin panel.');
                     }
                 }
@@ -75,11 +80,11 @@ export default function Pricing() {
                         title="Choose Your Plan"
                         subtitle="As a process transformation company, we rethinks and rebuilds processes for the digital age."
                     />
-                        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-                            {Array.from({ length: 3 }).map((_, i) => (
-                                <PricingCardSkeleton key={i} />
-                            ))}
-                        </div>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+                        {Array.from({ length: 3 }).map((_, i) => (
+                            <PricingCardSkeleton key={i} />
+                        ))}
+                    </div>
                 </div>
             </section>
         );
@@ -96,7 +101,7 @@ export default function Pricing() {
 
                 {error && (
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
-                        {defaultPricingPlans.map((plan, index) => (
+                        {defaultPricingPlans.slice(0, 3).map((plan, index) => (
                             <div
                                 key={plan.id}
                                 className="animate-fade-up"
@@ -118,8 +123,13 @@ export default function Pricing() {
                         ))}
                     </div>
                 )}
+
+                {!error && plans.length === 0 && (
+                    <div className="text-center py-12">
+                        <p className="text-navy-500">No pricing plans available. Please check back later.</p>
+                    </div>
+                )}
             </div>
         </section>
     );
 }
-// 0322 2481191

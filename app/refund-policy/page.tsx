@@ -1,4 +1,3 @@
-// app/refund/page.tsx (Refund Policy)
 import HeroBanner from '@/components/ui/HeroBanner';
 import Footer from '@/components/layout/Footer';
 

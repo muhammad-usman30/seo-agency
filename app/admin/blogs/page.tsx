@@ -1,13 +1,12 @@
-// app/admin/blogs/page.tsx
 'use client';
 
 import { useState, useEffect } from 'react';
-import { collection, getDocs, deleteDoc, doc } from 'firebase/firestore';
-import { db } from '@/lib/firebase/config';
-import { toast } from 'sonner';
-import Button from '@/components/ui/Button';
 import Link from 'next/link';
+import { collection, getDocs, deleteDoc, doc } from 'firebase/firestore';
+import { toast } from 'sonner';
+import { db } from '@/lib/firebase/config';
 import { Edit, Trash2, Plus } from 'lucide-react';
+import Button from '@/components/ui/Button';
 
 interface BlogPost {
     id: string;

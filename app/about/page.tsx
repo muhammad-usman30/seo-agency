@@ -1,4 +1,3 @@
-// app/about/page.tsx
 import HeroBanner from '@/components/ui/HeroBanner';
 import AboutStory from '@/components/sections/about/AboutStory';
 import TrustedBy from '@/components/sections/about/TrustedBy';

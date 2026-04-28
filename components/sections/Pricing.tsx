@@ -14,7 +14,7 @@ interface PricingPlan {
     name: string;
     priceMonthly: number;
     description: string;
-    features: string[];
+    features: string[] | { name: string; included: boolean }[];
     isFeatured: boolean;
     ctaText: string;
     order: number;
@@ -32,8 +32,12 @@ export default function Pricing() {
                 setLoading(true);
                 setError(null);
 
-                // First, try to get all plans (temporarily)
-                const q = query(collection(db, 'pricingPlans'));
+                // Now with the composite index created, we can use orderBy
+                const q = query(
+                    collection(db, 'pricingPlans'),
+                    where('isPublished', '==', true),
+                    orderBy('order', 'asc')
+                );
                 const snapshot = await getDocs(q);
 
                 if (snapshot.empty) {
@@ -45,14 +49,18 @@ export default function Pricing() {
                         id: doc.id,
                         ...doc.data()
                     } as PricingPlan));
+                    
+                    console.log('Fetched pricing plans (ordered by index):', plansData);
+                    
+                    // Limit to maximum 3 plans
+                    const limitedPlans = plansData.slice(0, 3);
+                    setPlans(limitedPlans);
 
-                    // Filter published plans
-                    const publishedPlans = plansData.filter(plan => plan.isPublished === true);
-                    console.log('Fetched pricing plans:', publishedPlans);
-                    setPlans(publishedPlans);
-
-                    if (publishedPlans.length === 0) {
+                    if (limitedPlans.length === 0 && plansData.length > 0) {
+                        // This means we have plans but they're not published
                         setError('No published pricing plans found. Please publish some plans in admin panel.');
+                    } else if (limitedPlans.length === 0) {
+                        setError('No pricing plans found. Please add some in admin panel.');
                     }
                 }
             } catch (error: any) {
@@ -75,11 +83,11 @@ export default function Pricing() {
                         title="Choose Your Plan"
                         subtitle="As a process transformation company, we rethinks and rebuilds processes for the digital age."
                     />
-                        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-                            {Array.from({ length: 3 }).map((_, i) => (
-                                <PricingCardSkeleton key={i} />
-                            ))}
-                        </div>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+                        {Array.from({ length: 3 }).map((_, i) => (
+                            <PricingCardSkeleton key={i} />
+                        ))}
+                    </div>
                 </div>
             </section>
         );
@@ -94,9 +102,9 @@ export default function Pricing() {
                     subtitle="As a process transformation company, we rethinks and rebuilds processes for the digital age."
                 />
 
-                {error && (
+                {error ? (
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
-                        {defaultPricingPlans.map((plan, index) => (
+                        {defaultPricingPlans.slice(0, 3).map((plan, index) => (
                             <div
                                 key={plan.id}
                                 className="animate-fade-up"
@@ -109,17 +117,18 @@ export default function Pricing() {
                             </div>
                         ))}
                     </div>
-                )}
-
-                {!error && plans.length > 0 && (
+                ) : plans.length > 0 ? (
                     <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                         {plans.map((plan, index) => (
                             <PricingCard key={plan.id} plan={plan} index={index} />
                         ))}
+                    </div>
+                ) : (
+                    <div className="text-center py-12">
+                        <p className="text-navy-500">No pricing plans available. Please check back later.</p>
                     </div>
                 )}
             </div>
         </section>
     );
 }
-// 0322 2481191

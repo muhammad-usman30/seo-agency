@@ -1,4 +1,3 @@
-// app/blog/page.tsx (Blog Listing Page)
 'use client';
 
 import { useState, useEffect } from 'react';

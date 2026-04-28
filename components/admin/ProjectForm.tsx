@@ -75,43 +75,43 @@ export default function ProjectForm({ initialData, onSuccess, onCancel }: Projec
     };
 
     return (
-        <form onSubmit={handleSubmit(onSubmit)} className="space-y-6 overflow-y-auto max-h-[525px]">
-            <div>
+        <form onSubmit={handleSubmit(onSubmit)} className="space-y-6 overflow-y-auto h-[calc(100vh-425px)]">
+            <div className='pr-4'>
                 <label className="block text-sm font-medium mb-2">Title</label>
                 <input {...register('title')} className="w-full px-4 py-2 border rounded-lg" />
                 {errors.title && <p className="text-red-500 text-sm mt-1">{errors.title.message}</p>}
             </div>
 
-            <div>
+            <div className='pr-4'>
                 <label className="block text-sm font-medium mb-2">Slug</label>
                 <input {...register('slug')} className="w-full px-4 py-2 border rounded-lg" />
                 {errors.slug && <p className="text-red-500 text-sm mt-1">{errors.slug.message}</p>}
             </div>
 
-            <div>
+            <div className='pr-4'>
                 <label className="block text-sm font-medium mb-2">Category</label>
                 <input {...register('category')} className="w-full px-4 py-2 border rounded-lg" />
                 {errors.category && <p className="text-red-500 text-sm mt-1">{errors.category.message}</p>}
             </div>
 
-            <div>
+            <div className='pr-4'>
                 <label className="block text-sm font-medium mb-2">Excerpt</label>
                 <textarea {...register('excerpt')} rows={2} className="w-full px-4 py-2 border rounded-lg" />
                 {errors.excerpt && <p className="text-red-500 text-sm mt-1">{errors.excerpt.message}</p>}
             </div>
 
-            <div>
+            <div className='pr-4'>
                 <label className="block text-sm font-medium mb-2">Content</label>
                 <textarea {...register('content')} rows={6} className="w-full px-4 py-2 border rounded-lg" />
                 {errors.content && <p className="text-red-500 text-sm mt-1">{errors.content.message}</p>}
             </div>
 
-            <div>
+            <div className='pr-4'>
                 <label className="block text-sm font-medium mb-2">Image URL</label>
                 <input {...register('imageUrl')} width={300} height={150} className="w-full px-4 py-2 border rounded-lg" placeholder="https://..." />
             </div>
 
-            <div>
+            <div className='pr-4'>
                 <label className="block text-sm font-medium mb-2">Tags</label>
                 <div className="flex gap-2 mb-2">
                     <input value={tagInput} onChange={(e) => setTagInput(e.target.value)} className="flex-1 px-4 py-2 border rounded-lg" />
@@ -134,7 +134,7 @@ export default function ProjectForm({ initialData, onSuccess, onCancel }: Projec
                 </label>
             </div>
 
-            <div>
+            <div className='pr-4'>
                 <label className="block text-sm font-medium mb-2">Order</label>
                 <input type="number" {...register('order', { valueAsNumber: true })} className="w-full px-4 py-2 border rounded-lg" />
             </div>

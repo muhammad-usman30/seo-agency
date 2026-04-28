@@ -1,4 +1,3 @@
-// app/page.tsx
 import Hero from '@/components/sections/Hero';
 import AboutPreview from '@/components/sections/AboutPreview';
 import Services from '@/components/sections/Services';

@@ -1,4 +1,3 @@
-// app/contact/page.tsx
 'use client';
 
 import { useState } from 'react';
@@ -11,7 +10,6 @@ import { db } from '@/lib/firebase/config';
 import { MessageCircle, Mail, Phone, MapPin, Send } from 'lucide-react';
 import HeroBanner from '@/components/ui/HeroBanner';
 import Footer from '@/components/layout/Footer';
-import GradientPlaceholder from '@/components/ui/GradientPlaceholder';
 
 const contactSchema = z.object({
     firstName: z.string().min(2, 'Name must be at least 2 characters'),

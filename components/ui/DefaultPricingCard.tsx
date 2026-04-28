@@ -88,7 +88,7 @@ export default function DefaultPricingCard({ plan, isStandard = false }: Pricing
                 <CTAButton
                     href='/contact'
                     variant={isStandard ? 'secondary' : 'primary'}
-                    className={`w-full bg-white text-center ${isStandard ? 'text-orange-600' : ''}`}
+                    className={`w-full bg-white text-center ${isStandard ? '!text-orange-600' : ''}`}
                 >
                     {plan.buttonText}
                 </CTAButton>

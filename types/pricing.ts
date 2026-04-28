@@ -3,7 +3,7 @@ export interface PricingPlan {
     name: string;
     priceMonthly: number;
     description: string;
-    features: string[];
+    features: (string | { name: string; included: boolean })[];
     isFeatured: boolean;
     ctaText: string;
     order: number;

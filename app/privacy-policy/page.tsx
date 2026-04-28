@@ -1,4 +1,3 @@
-// app/privacy/page.tsx (Privacy Policy)
 import HeroBanner from '@/components/ui/HeroBanner';
 import Footer from '@/components/layout/Footer';
 

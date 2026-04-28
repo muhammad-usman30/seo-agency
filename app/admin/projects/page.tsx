@@ -1,4 +1,3 @@
-// app/admin/projects/page.tsx
 'use client';
 
 import { useState, useEffect } from 'react';
@@ -53,7 +52,6 @@ export default function AdminProjectsPage() {
                         onSuccess={() => { setShowForm(false); setEditingProject(null); fetchProjects(); }}
                         onCancel={() => { setShowForm(false); setEditingProject(null); }}
                     />
-                    <button onClick={() => { setShowForm(false); setEditingProject(null); }} className="mt-4 text-navy-500 flex items-center border px-12 py-2.5 rounded-full hover:bg-gray-200 hover:text-black">Cancel</button>
                 </div>
             )}
             {loading ? (
@@ -61,7 +59,7 @@ export default function AdminProjectsPage() {
             ) : (
                 <>
                     {!showForm && (
-                        <div className="grid gap-4">
+                        <div className="grid gap-4 overflow-y-auto h-[calc(100vh-270px)]">
                             {projects.map((project) => (
                                 <div key={project.id} className="bg-white rounded-xl shadow-md p-6 flex justify-between items-center">
                                     <div>

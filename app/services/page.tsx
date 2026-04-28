@@ -1,4 +1,3 @@
-// app/services/page.tsx
 import HeroBanner from '@/components/ui/HeroBanner';
 import SectionHeading from '@/components/ui/SectionHeading';
 import ServiceCard from '@/components/ui/ServiceCard';

@@ -1,4 +1,3 @@
-// components/layout/Header.tsx (Updated with left-to-right drawer)
 'use client';
 
 import { useState, useEffect } from 'react';
@@ -98,7 +97,7 @@ export default function Header() {
           <div className="flex justify-between items-center">
             {/* Logo */}
             <Link href="/" className="relative z-50">
-              <Image src="/icons/logo.png" alt="javusseo" width={180} height={150} priority />
+              <Image src="/icons/logo.png" alt="javusseo" width={180} height={150} className="w-auto h-auto" priority />
             </Link>
 
             {/* Desktop Navigation */}

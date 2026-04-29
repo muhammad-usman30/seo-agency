@@ -108,7 +108,7 @@ export default function TrustedBy() {
         <section className="py-16 bg-cream">
             <div className="container-custom">
                 <p className="text-center text-navy-600 mb-12 text-lg font-semibold">
-                    Trusted by <span className="text-primary-600 font-bold">20+ Companies</span> Worldwide
+                    Trusted by <span className="text-primary-600 font-bold">15+ Companies</span> Worldwide
                 </p>
 
                 <div className="relative">

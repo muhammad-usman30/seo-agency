@@ -14,8 +14,8 @@ export const heroSlides = [
             { label: 'Learn More', href: '/services', variant: 'outline' }
         ],
         stats: [
-            { icon: 'users', value: '10k+', label: 'World Wide Clients' },
-            { icon: 'trending', value: '200+', label: 'Product Sales' }
+            { icon: 'users', value: '50+', label: 'Clients Worldwide' },
+            { icon: 'trending', value: '100%', label: 'SEO Results' }
         ],
         image: 'https://images.pexels.com/photos/7688336/pexels-photo-7688336.jpeg?w=800',
         imageAlt: 'SEO Strategy Meeting'
@@ -34,8 +34,8 @@ export const heroSlides = [
             { label: 'View Case Studies', href: '/services', variant: 'outline' }
         ],
         stats: [
-            { icon: 'users', value: '500+', label: 'Happy Clients' },
-            { icon: 'trending', value: '98%', label: 'Success Rate' }
+            { icon: 'users', value: '50+', label: 'Happy Clients' },
+            { icon: 'trending', value: '24/7', label: 'Dedicated Support' }
         ],
         image: 'https://images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg?w=800',
         imageAlt: 'Data Analytics Dashboard'
@@ -54,8 +54,8 @@ export const heroSlides = [
             { label: 'Our Services', href: '/services', variant: 'outline' }
         ],
         stats: [
-            { icon: 'users', value: '15+', label: 'Years Experience' },
-            { icon: 'trending', value: '24/7', label: 'Support Available' }
+            { icon: 'users', value: '5+', label: 'Years of Experience' },
+            { icon: 'trending', value: '50+', label: 'Projects Completed' }
         ],
         image: 'https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg?w=800',
         imageAlt: 'Team Collaboration'

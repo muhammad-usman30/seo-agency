@@ -2,8 +2,8 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import GradientPlaceholder from '@/components/ui/GradientPlaceholder';
 import { Award, Users, TrendingUp, Clock } from 'lucide-react';
+import Image from 'next/image';
 
 const stats = [
     { icon: Award, value: '15+', label: 'Years Experience' },
@@ -22,7 +22,13 @@ export default function AboutStory() {
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}
                     >
-                        <GradientPlaceholder aspectRatio="video" label="Our Story" />
+                        <Image
+                            src={'https://images.pexels.com/photos/6120403/pexels-photo-6120403.jpeg?w=800'}
+                            height={400}
+                            width={800}
+                            alt='journey to excellence'
+                            className='rounded-xl'
+                        />
                     </motion.div>
 
                     <motion.div

@@ -15,12 +15,25 @@ const navigation = [
     name: 'Services',
     href: '/services',
     dropdown: [
-      { name: 'SEO Marketing', href: '/services/seo-marketing' },
-      { name: 'Digital Marketing', href: '/services/digital-marketing' },
-      { name: 'Social Marketing', href: '/services/social-marketing' },
-      { name: 'Content Marketing', href: '/services/content-marketing' },
-      { name: 'Market Research', href: '/services/market-research' },
-      { name: 'Keyword Research', href: '/services/keyword-research' },
+      // Core SEO Services
+      { name: 'Keyword Research & Strategy', href: '/services/keyword-research-strategy', group: 'Core SEO' },
+      { name: 'On-Page SEO', href: '/services/on-page-seo', group: 'Core SEO' },
+      { name: 'Technical SEO', href: '/services/technical-seo', group: 'Core SEO' },
+      { name: 'Content SEO', href: '/services/content-seo', group: 'Core SEO' },
+      { name: 'Off-Page SEO (Link Building)', href: '/services/off-page-seo', group: 'Core SEO' },
+      
+      // Specialized SEO
+      { name: 'Local SEO', href: '/services/local-seo', group: 'Specialized SEO' },
+      { name: 'E-commerce SEO', href: '/services/ecommerce-seo', group: 'Specialized SEO' },
+      { name: 'Mobile SEO', href: '/services/mobile-seo', group: 'Specialized SEO' },
+      { name: 'International SEO', href: '/services/international-seo', group: 'Specialized SEO' },
+      
+      // Strategy & Analytics
+      { name: 'SEO Audits', href: '/services/seo-audits', group: 'Strategy & Analytics' },
+      { name: 'Competitor Analysis', href: '/services/competitor-analysis', group: 'Strategy & Analytics' },
+      { name: 'SEO Strategy & Consulting', href: '/services/seo-strategy-consulting', group: 'Strategy & Analytics' },
+      { name: 'SEO Analytics & Reporting', href: '/services/seo-analytics-reporting', group: 'Strategy & Analytics' },
+      { name: 'Conversion Rate Optimization (CRO)', href: '/services/conversion-rate-optimization', group: 'Strategy & Analytics' },
     ]
   },
   { name: 'Blog', href: '/blog' },
@@ -137,7 +150,7 @@ export default function Header() {
                         <Link
                           key={subItem.name}
                           href={subItem.href}
-                          className="block px-4 py-2 text-navy-700 hover:bg-cream hover:text-primary-600 transition"
+                          className="text-[14px] block px-4 py-2 text-navy-700 hover:bg-cream hover:text-primary-600 transition"
                         >
                           {subItem.name}
                         </Link>

@@ -56,6 +56,7 @@ export default function ContactPage() {
                 title="Contact Us"
                 subtitle="Get in touch with our team"
                 breadcrumbs={['Home', 'Contact Us']}
+                backgroundURL='https://images.pexels.com/photos/7219167/pexels-photo-7219167.jpeg'
             />
 
             <section className="py-20 bg-cream">
@@ -86,15 +87,15 @@ export default function ContactPage() {
                                     <Phone className="w-10 h-10 text-primary-500 mb-4" />
                                     <h3 className="text-xl font-bold mb-2">Call Us</h3>
                                     <p className="text-navy-600 mb-2">Mon-Fri from 8am to 5pm</p>
-                                    <a href="tel:+919943430343" className="text-2xl font-bold text-primary-600">
-                                        +91 994 343 0343
+                                    <a href="tel:+923096535746" className="text-2xl font-bold text-primary-600">
+                                        +92 309 6535746
                                     </a>
                                 </div>
 
                                 <div className="bg-white rounded-2xl p-6 shadow-lg">
                                     <MapPin className="w-10 h-10 text-primary-500 mb-4" />
                                     <h3 className="text-xl font-bold mb-2">Visit Us</h3>
-                                    <p className="text-navy-600">S.G High Way, Ahmedabad - 454545</p>
+                                    <p className="text-navy-600">F79H+C5F, Block M Phase 2 Johar Town, Lahore</p>
                                 </div>
                             </div>
                         </div>

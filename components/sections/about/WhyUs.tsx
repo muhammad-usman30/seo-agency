@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 import SectionHeading from '@/components/ui/SectionHeading';
 import GradientPlaceholder from '@/components/ui/GradientPlaceholder';
 import { CheckCircle } from 'lucide-react';
+import Image from 'next/image';
 
 const reasons = [
     'Create A Strategy - Includes using high-quality keywords to write strategic content that ranks',
@@ -42,7 +43,13 @@ export default function WhyUs() {
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}
                     >
-                        <GradientPlaceholder aspectRatio="square" label="Why Us Visual" />
+                        <Image
+                            src={'https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?w=800'}
+                            height={400}
+                            width={800}
+                            alt='why us'
+                            className='rounded-xl'
+                        />
                     </motion.div>
                 </div>
             </div>

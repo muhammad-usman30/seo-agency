@@ -21,6 +21,8 @@ export default function AboutPage() {
                 title="About Us"
                 subtitle="15+ Years Of Experience in Driving Digital Success"
                 breadcrumbs={['Home', 'About Us']}
+                backgroundURL='https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg?w=1600'
+                overlayOpacity={70}
             />
             <AboutStory />
             <TrustedBy />

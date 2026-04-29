@@ -14,17 +14,16 @@ const quickLinks = [
 ];
 
 const legalLinks = [
-    { name: 'Terms Of Service', href: '/terms' },
-    { name: 'Refund Policy', href: '/refund' },
-    { name: 'Privacy Policy', href: '/privacy' },
-    { name: 'Sub-Processors', href: '/sub-processors' },
+    { name: 'Terms Of Service', href: '/terms-and-conditions' },
+    { name: 'Refund Policy', href: '/refund-policy' },
+    { name: 'Privacy Policy', href: '/privacy-policy' },
 ];
 
 const ourServices = [
-    { name: 'SEO Marketing', href: '/services/seo-marketing' },
-    { name: 'Digital Marketing', href: '/services/digital-marketing' },
-    { name: 'Keyword Research', href: '/services/keyword-research' },
-    { name: 'Social Marketing', href: '/services/social-marketing' },
+    { name: 'Keyword Research & Strategy', href: '/services/keyword-research-strategy' },
+    { name: 'On-Page SEO', href: '/services/on-page-seo' },
+    { name: 'Technical SEO', href: '/services/technical-seo' },
+    { name: 'Content SEO', href: '/services/content-seo' },
 ];
 
 export default function Footer() {

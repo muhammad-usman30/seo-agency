@@ -39,7 +39,7 @@ export default function AboutStory() {
                         <h2 className="text-4xl font-bold mb-6">Our Journey to Excellence</h2>
                         <p className="text-navy-600 mb-6">
                             As a process transformation company, we rethink and rebuild processes for the digital age.
-                            With over 15 years of experience, we've helped hundreds of businesses achieve their digital goals.
+                            With over 5+ years of experience, we've helped hundreds of businesses achieve their digital goals.
                         </p>
                         <div className="grid grid-cols-2 gap-6 mb-8">
                             {stats.map((stat, index) => (

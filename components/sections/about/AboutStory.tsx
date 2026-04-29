@@ -6,8 +6,8 @@ import { Award, Users, TrendingUp, Clock } from 'lucide-react';
 import Image from 'next/image';
 
 const stats = [
-    { icon: Award, value: '15+', label: 'Years Experience' },
-    { icon: Users, value: '500+', label: 'Happy Clients' },
+    { icon: Award, value: '5+', label: 'Years Experience' },
+    { icon: Users, value: '50+', label: 'Happy Clients' },
     { icon: TrendingUp, value: '98%', label: 'Success Rate' },
     { icon: Clock, value: '24/7', label: 'Support' },
 ];

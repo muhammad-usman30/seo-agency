@@ -110,7 +110,7 @@ export default function Header() {
           <div className="flex justify-between items-center">
             {/* Logo */}
             <Link href="/" className="relative z-50">
-              <Image src="/icons/logo.png" alt="javusseo" width={180} height={150} className="w-auto h-auto" priority />
+              <Image src="/icons/logo.png" alt="javusseo" width={100} height={100} className="w-44 h-auto" priority />
             </Link>
 
             {/* Desktop Navigation */}

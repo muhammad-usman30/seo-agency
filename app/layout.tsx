@@ -4,6 +4,7 @@ import './globals.css';
 import { Toaster } from 'sonner';
 import Header from '@/components/layout/Header';
 import { cn } from '@/lib/utils/cn';
+import WhatsAppButton from '@/components/ui/WhatsAppButton';
 
 // Configure Inter font (sans-serif)
 const inter = Inter({
@@ -73,6 +74,7 @@ export default function RootLayout({
         <Header />
         <main>{children}</main>
         <Toaster position="top-right" richColors />
+        <WhatsAppButton />
       </body>
     </html>
   );

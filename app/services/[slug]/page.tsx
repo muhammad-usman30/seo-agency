@@ -2,7 +2,6 @@
 
 import { useParams } from 'next/navigation';
 import HeroBanner from '@/components/ui/HeroBanner';
-import GradientPlaceholder from '@/components/ui/GradientPlaceholder';
 import CTAButton from '@/components/ui/CTAButton';
 import FAQAccordion from '@/components/ui/FAQAccordion';
 import Footer from '@/components/layout/Footer';
@@ -55,13 +54,12 @@ export default function SingleServicePage() {
                                 <ul className="space-y-2">
                                     {Object.entries(serviceData).map(([key, data]) => (
                                         <li key={key}>
-                                            <Link 
-                                                href={`/services/${key}`} 
-                                                className={`block px-4 py-2 rounded-lg transition text-sm ${
-                                                    slug === key 
-                                                        ? 'gradient-bg text-white' 
+                                            <Link
+                                                href={`/services/${key}`}
+                                                className={`block px-4 py-2 rounded-lg transition text-sm ${slug === key
+                                                        ? 'gradient-bg text-white'
                                                         : 'hover:bg-white text-navy-700'
-                                                }`}
+                                                    }`}
                                             >
                                                 {data.title}
                                             </Link>
@@ -81,7 +79,7 @@ export default function SingleServicePage() {
 
                         {/* Main Content */}
                         <div className="lg:col-span-2">
-                            <img src={service.sectionBanner} alt='section banner' className='h-[60vh] min-h-[300px] w-full rounded-xl mb-4 object-cover' />
+                            <Image src={service.sectionBanner} height={400} width={800} alt='section banner' className='h-[60vh] min-h-[300px] w-full rounded-xl mb-4 object-cover' />
 
                             <h2 className="text-3xl font-bold mb-4">{service.title}</h2>
                             <p className="text-navy-600 mb-6 leading-relaxed">{service.longDescription}</p>
@@ -98,8 +96,8 @@ export default function SingleServicePage() {
 
                             <div className="bg-gradient-to-r from-primary-50 to-cream rounded-2xl p-6 mb-8">
                                 <p className="text-navy-700 italic">
-                                    "As a process transformation company, we rethink and rebuild processes for the digital age. 
-                                    Our {service.title.toLowerCase()} service is designed to deliver measurable results and 
+                                    "As a process transformation company, we rethink and rebuild processes for the digital age.
+                                    Our {service.title.toLowerCase()} service is designed to deliver measurable results and
                                     sustainable growth for your business."
                                 </p>
                             </div>

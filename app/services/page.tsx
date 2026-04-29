@@ -4,15 +4,8 @@ import ServiceCard from '@/components/ui/ServiceCard';
 import WorkingProcess from '@/components/sections/WorkingProcess';
 import Pricing from '@/components/sections/Pricing';
 import Footer from '@/components/layout/Footer';
-
-const services = [
-    { icon: 'Search', title: 'SEO Marketing', description: 'sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Eget arcu dictum varius duis at consectetur lorem donec.', slug: 'seo-marketing' },
-    { icon: 'Megaphone', title: 'Digital Marketing', description: 'sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Eget arcu dictum varius duis at consectetur lorem donec.', slug: 'digital-marketing' },
-    { icon: 'Share2', title: 'Social Marketing', description: 'sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Eget arcu dictum varius duis at consectetur lorem donec.', slug: 'social-marketing' },
-    { icon: 'FileText', title: 'Content Marketing', description: 'sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Eget arcu dictum varius duis at consectetur lorem donec.', slug: 'content-marketing' },
-    { icon: 'TrendingUp', title: 'Market Research', description: 'sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Eget arcu dictum varius duis at consectetur lorem donec.', slug: 'market-research' },
-    { icon: 'Key', title: 'Keyword Research', description: 'sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Eget arcu dictum varius duis at consectetur lorem donec.', slug: 'keyword-research' },
-];
+import { servicesData } from '@/data/home/servicesData';
+import CTASection from '@/components/sections/CTASection';
 
 export const metadata = {
     title: 'Services - JAVUSSEO | Premium SEO & Digital Marketing Services',
@@ -26,6 +19,7 @@ export default function ServicesPage() {
                 title="Our Services"
                 subtitle="What Service We Provide"
                 breadcrumbs={['Home', 'Services']}
+                backgroundURL='https://images.pexels.com/photos/942331/pexels-photo-942331.jpeg'
             />
 
             <section className="py-20 bg-white">
@@ -35,7 +29,7 @@ export default function ServicesPage() {
                         subtitle="As a process transformation company, we rethink and rebuilds processes for the digital age."
                     />
                     <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                        {services.map((service, index) => (
+                        {servicesData.map((service, index) => (
                             <ServiceCard key={index} {...service} index={index} />
                         ))}
                     </div>
@@ -44,6 +38,7 @@ export default function ServicesPage() {
 
             <WorkingProcess />
             <Pricing />
+            <CTASection />
             <Footer />
         </>
     );

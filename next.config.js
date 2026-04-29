@@ -1,4 +1,3 @@
-// next.config.js
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     images: {
@@ -28,17 +27,20 @@ const nextConfig = {
                 pathname: '/**',
             },
             {
+                protocol: 'https',
+                hostname: 'images.pexels.com',
+                port: '',
+                pathname: '/**',
+            },
+            {
                 protocol: 'http',
                 hostname: 'localhost',
                 port: '3000',
                 pathname: '/**',
             },
         ],
-        // For development, you can also allow all domains temporarily
-        // uncomment the line below for testing only
-        // domains: ['firebasestorage.googleapis.com', 'ik.imagekit.io'],
     },
     reactStrictMode: true,
-}
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;

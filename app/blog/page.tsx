@@ -1,91 +1,58 @@
+// app/blog/page.tsx
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import Link from 'next/link';
-import { collection, getDocs, query, orderBy } from 'firebase/firestore';
-import { db } from '@/lib/firebase/config';
 import HeroBanner from '@/components/ui/HeroBanner';
 import SectionHeading from '@/components/ui/SectionHeading';
-import GradientPlaceholder from '@/components/ui/GradientPlaceholder';
-import LoadingState from '@/components/ui/Loading';
+import BlogCard from '@/components/ui/BlogCard';
 import Footer from '@/components/layout/Footer';
-import { Calendar, User, Clock } from 'lucide-react';
+import { Search } from 'lucide-react';
+import { blogsData, featuredBlogs } from '@/data/blog/blog';
 
-interface BlogPost {
-    id: string;
-    title: string;
-    slug: string;
-    excerpt: string;
-    content: string;
-    author: string;
-    date: string;
-    readTime: string;
-    category: string;
-    imageUrl: string;
-    isPublished: boolean;
-    createdAt: any;
-}
-
-const BlogCardSkeleton = () => (
-    <div className="bg-white rounded-2xl overflow-hidden shadow-lg animate-pulse">
-        <div className="w-full h-64 bg-gray-200" />
-        <div className="p-6">
-            <div className="h-4 bg-gray-200 rounded w-24 mb-3" />
-            <div className="h-6 bg-gray-200 rounded w-3/4 mb-3" />
-            <div className="h-4 bg-gray-200 rounded w-full mb-2" />
-            <div className="h-4 bg-gray-200 rounded w-2/3" />
-        </div>
-    </div>
-);
+const categories = ['All', 'SEO', 'Local SEO', 'Content Marketing', 'Technical SEO', 'Link Building', 'Analytics'];
 
 export default function BlogPage() {
-    const [posts, setPosts] = useState<BlogPost[]>([]);
-    const [loading, setLoading] = useState(true);
     const [selectedCategory, setSelectedCategory] = useState('All');
+    const [searchQuery, setSearchQuery] = useState('');
 
-    const categories = ['All', 'SEO', 'Digital Marketing', 'Social Media', 'Content Marketing', 'News'];
-
-    useEffect(() => {
-        const fetchPosts = async () => {
-            try {
-                setLoading(true);
-                const q = query(collection(db, 'blogs'), orderBy('createdAt', 'desc'));
-                const querySnapshot = await getDocs(q);
-
-                const postsData = querySnapshot.docs.map(doc => ({
-                    id: doc.id,
-                    ...doc.data()
-                } as BlogPost));
-
-                const publishedPosts = postsData.filter(post => post.isPublished === true);
-                setPosts(publishedPosts);
-            } catch (error) {
-                console.error('Error fetching blog posts:', error);
-            } finally {
-                setLoading(false);
-            }
-        };
-        fetchPosts();
-    }, []);
-
-    const filteredPosts = selectedCategory === 'All'
-        ? posts
-        : posts.filter(post => post.category === selectedCategory);
+    const filteredPosts = blogsData.filter(post => {
+        const matchesCategory = selectedCategory === 'All' || post.category === selectedCategory;
+        const matchesSearch = post.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+            post.excerpt.toLowerCase().includes(searchQuery.toLowerCase()) ||
+            post.tags.some(tag => tag.toLowerCase().includes(searchQuery.toLowerCase()));
+        return matchesCategory && matchesSearch;
+    });
 
     return (
         <>
             <HeroBanner
                 title="Our Blog"
-                subtitle="Insights, tips, and latest trends in digital marketing"
+                subtitle="Expert insights, strategies, and actionable tips for digital success"
                 breadcrumbs={['Home', 'Blog']}
+                backgroundURL={'https://images.pexels.com/photos/262508/pexels-photo-262508.jpeg'}
             />
 
             <section className="py-20 bg-white">
                 <div className="container-custom">
                     <SectionHeading
-                        title="Latest Articles"
-                        subtitle="Expert insights and strategies to grow your online presence"
+                        title="Latest Articles & Insights"
+                        subtitle="Stay updated with the latest trends and strategies in digital marketing"
                     />
+
+                    {/* Search Bar */}
+                    <div className="max-w-md mx-auto mb-8">
+                        <div className="relative">
+                            <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-navy-400" />
+                            <input
+                                type="text"
+                                placeholder="Search articles..."
+                                value={searchQuery}
+                                onChange={(e) => setSearchQuery(e.target.value)}
+                                className="w-full pl-12 pr-4 py-3 border border-gray-200 rounded-full focus:outline-none focus:ring-2 focus:ring-primary-200 focus:border-primary-500"
+                            />
+                        </div>
+                    </div>
 
                     {/* Category Filter */}
                     <div className="flex flex-wrap justify-center gap-3 mb-12">
@@ -103,54 +70,25 @@ export default function BlogPage() {
                         ))}
                     </div>
 
-                    {loading ? (
-                        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                            {[1, 2, 3, 4, 5, 6].map((item) => (
-                                <BlogCardSkeleton key={item} />
-                            ))}
-                        </div>
-                    ) : filteredPosts.length === 0 ? (
+                    {filteredPosts.length === 0 ? (
                         <div className="text-center py-12">
-                            <GradientPlaceholder aspectRatio="video" label="No Posts Yet" />
-                            <p className="text-navy-500 mt-4">No blog posts found. Check back soon!</p>
+                            <p className="text-navy-500">No articles found matching your criteria.</p>
                         </div>
                     ) : (
                         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                            {filteredPosts.map((post) => (
-                                <Link href={`/blog/${post.slug}`} key={post.id}>
-                                    <div className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 group cursor-pointer">
-                                        <div className="relative w-full h-64 overflow-hidden bg-gray-100">
-                                            {post.imageUrl ? (
-                                                <img
-                                                    src={post.imageUrl}
-                                                    alt={post.title}
-                                                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                                                />
-                                            ) : (
-                                                <GradientPlaceholder aspectRatio="video" label={post.title} />
-                                            )}
-                                        </div>
-                                        <div className="p-6">
-                                            <div className="flex items-center gap-4 text-sm text-navy-500 mb-3">
-                                                <span className="flex items-center gap-1">
-                                                    <Calendar className="w-4 h-4" />
-                                                    {post.date}
-                                                </span>
-                                                <span className="flex items-center gap-1">
-                                                    <Clock className="w-4 h-4" />
-                                                    {post.readTime} min read
-                                                </span>
-                                            </div>
-                                            <span className="text-primary-600 text-sm font-semibold">{post.category}</span>
-                                            <h3 className="text-xl font-bold mt-2 mb-2 line-clamp-2">{post.title}</h3>
-                                            <p className="text-navy-600 line-clamp-3">{post.excerpt}</p>
-                                            <div className="flex items-center gap-2 mt-4 text-navy-500">
-                                                <User className="w-4 h-4" />
-                                                <span className="text-sm">{post.author}</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </Link>
+                            {blogsData.map((blog, index) => (
+                                <BlogCard
+                                    key={blog.slug}
+                                    title={blog.title}
+                                    excerpt={blog.excerpt}
+                                    date={blog.date}
+                                    slug={blog.slug}
+                                    author={blog.author}
+                                    readTime={blog.readTime}
+                                    category={blog.category}
+                                    imageUrl={blog.imageUrl}
+                                    index={index}
+                                />
                             ))}
                         </div>
                     )}

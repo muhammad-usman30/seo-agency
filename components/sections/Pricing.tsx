@@ -50,8 +50,6 @@ export default function Pricing() {
                         ...doc.data()
                     } as PricingPlan));
                     
-                    console.log('Fetched pricing plans (ordered by index):', plansData);
-                    
                     // Limit to maximum 3 plans
                     const limitedPlans = plansData.slice(0, 3);
                     setPlans(limitedPlans);

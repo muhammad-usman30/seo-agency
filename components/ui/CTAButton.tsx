@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { ReactNode } from 'react';
 
 interface CTAButtonProps {
-    children: ReactNode;
+    children?: ReactNode;
     href: string;
     variant?: 'primary' | 'outline' | 'secondary';
     size?: 'sm' | 'md' | 'lg';

@@ -4,6 +4,7 @@
 import SectionHeading from '@/components/ui/SectionHeading';
 import FAQAccordion from '@/components/ui/FAQAccordion';
 import GradientPlaceholder from '@/components/ui/GradientPlaceholder';
+import Image from 'next/image';
 
 const faqItems = [
     { question: 'Why Should I Choose Digiara?', answer: 'Choosing the best SEO Agency means research, research and more research. Checking through reviews, team credentials, and getting proposals and audits.' },
@@ -25,7 +26,13 @@ export default function FAQ() {
                         <FAQAccordion items={faqItems} />
                     </div>
                     <div>
-                        <GradientPlaceholder aspectRatio="video" label="FAQ Visual" />
+                          <Image
+                            src={'https://images.pexels.com/photos/221164/pexels-photo-221164.jpeg?w=800'}
+                            height={400}
+                            width={800}
+                            alt='faqs'
+                            className='rounded-xl'
+                        />
                     </div>
                 </div>
             </div>

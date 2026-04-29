@@ -9,6 +9,8 @@ interface SectionHeadingProps {
     badge?: string;
     centered?: boolean;
     className?: string;
+    titleClass?: string;
+    subTitleClass?: string;
 }
 
 export default function SectionHeading({
@@ -16,7 +18,9 @@ export default function SectionHeading({
     subtitle,
     badge,
     centered = true,
-    className = ''
+    className = '',
+    titleClass,
+    subTitleClass,
 }: SectionHeadingProps) {
     return (
         <motion.div
@@ -30,8 +34,8 @@ export default function SectionHeading({
                     {badge}
                 </span>
             )}
-            <h2 className="text-4xl md:text-5xl font-bold text-navy-800 mb-4">{title}</h2>
-            {subtitle && <p className="text-lg text-navy-600 max-w-2xl mx-auto">{subtitle}</p>}
+            <h2 className={`text-4xl md:text-5xl font-bold text-navy-800 mb-4 ${titleClass || ''}`}>{title}</h2>
+            {subtitle && <p className={`text-lg text-navy-600 max-w-2xl mx-auto ${subTitleClass || ''}`}>{subtitle}</p>}
         </motion.div>
     );
 }

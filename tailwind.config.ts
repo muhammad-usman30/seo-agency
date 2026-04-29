@@ -9,6 +9,9 @@ const config: Config = {
     ],
     theme: {
         extend: {
+            text: {
+                light: '14px',
+            },
             colors: {
                 primary: {
                     50: '#fff7ed',
